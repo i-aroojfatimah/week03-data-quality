@@ -177,3 +177,15 @@ def test_every_check_states_an_expectation_in_words(check):
     result = run_or_skip(check, frame(full_day()))
     assert result.expectation.strip(), f"{check.__name__} needs a readable expectation"
     assert len(result.expectation.split()) >= 5
+def test_part_e_rejects_unknown_line_id():
+    attacked = frame([
+        row(),
+        row(line_id="Line_D"),
+        row(line_id="Line_A", energy_kwh=-50),
+        row(line_id="Line_B", rejected_units=9999),
+    ])
+
+    result = vd.check_known_line_ids(attacked)
+
+    assert not result.passed
+    assert result.affected_rows == [3]

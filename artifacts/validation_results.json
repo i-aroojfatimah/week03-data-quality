@@ -1,0 +1,123 @@
+{
+  "dataset": "data/raw/shift_log_i-aroojfatimah.csv",
+  "sha256": "05525440ad4db1ff572ebd2218851e57569fcde4957c43e353e223881d8f036a",
+  "rows": 73,
+  "columns": 8,
+  "status": "FAIL",
+  "failed_checks": [
+    "timestamp_parse",
+    "required_values_complete",
+    "exact_row_uniqueness",
+    "business_key_uniqueness",
+    "positive_energy",
+    "motor_temperature_review_range",
+    "shift_matches_hour"
+  ],
+  "unwritten_checks": [],
+  "checks": [
+    {
+      "name": "required_columns",
+      "passed": true,
+      "observed": [],
+      "expectation": "all eight contracted columns are present",
+      "affected_rows": []
+    },
+    {
+      "name": "timestamp_parse",
+      "passed": false,
+      "observed": 1,
+      "expectation": "every timestamp reads as an ISO-8601 date and time",
+      "affected_rows": [
+        68
+      ]
+    },
+    {
+      "name": "required_values_complete",
+      "passed": false,
+      "observed": 1,
+      "expectation": "required fields contain no missing values",
+      "affected_rows": [
+        3
+      ]
+    },
+    {
+      "name": "exact_row_uniqueness",
+      "passed": false,
+      "observed": 2,
+      "expectation": "no row repeats every field of another row",
+      "affected_rows": [
+        29,
+        74
+      ]
+    },
+    {
+      "name": "business_key_uniqueness",
+      "passed": false,
+      "observed": 2,
+      "expectation": "each timestamp and line_id combination appears at most once",
+      "affected_rows": [
+        29,
+        74
+      ]
+    },
+    {
+      "name": "known_line_ids",
+      "passed": true,
+      "observed": 0,
+      "expectation": "line_id must be one of the three expected production lines",
+      "affected_rows": []
+    },
+    {
+      "name": "positive_energy",
+      "passed": false,
+      "observed": 1,
+      "expectation": "energy_kwh must be greater than zero for each hourly record",
+      "affected_rows": [
+        22
+      ]
+    },
+    {
+      "name": "rejects_within_output",
+      "passed": true,
+      "observed": 0,
+      "expectation": "rejected_units must be non-negative and cannot exceed units produced",
+      "affected_rows": []
+    },
+    {
+      "name": "downtime_range",
+      "passed": true,
+      "observed": 0,
+      "expectation": "downtime_min is between 0 and 60 minutes per hourly period",
+      "affected_rows": []
+    },
+    {
+      "name": "motor_temperature_review_range",
+      "passed": false,
+      "observed": 1,
+      "expectation": "motor_temp_c sits between 40 and 100 under the course review rule",
+      "affected_rows": [
+        8
+      ]
+    },
+    {
+      "name": "shift_matches_hour",
+      "passed": false,
+      "observed": 1,
+      "expectation": "shift is Day from 06:00 to 17:59 and Night from 18:00 to 05:59",
+      "affected_rows": [
+        45
+      ]
+    },
+    {
+      "name": "expected_line_hour_coverage",
+      "passed": true,
+      "observed": {
+        "Line_A": 24,
+        "Line_B": 24,
+        "Line_C": 24
+      },
+      "expectation": "each expected line has 24 distinct hourly records",
+      "affected_rows": []
+    }
+  ]
+}
