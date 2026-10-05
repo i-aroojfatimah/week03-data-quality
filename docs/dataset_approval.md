@@ -2,39 +2,22 @@
 
 ## The decision, in one sentence
 
-Complete this sentence exactly. It is the sentence you would defend in a
-handover meeting, and it is what you will read aloud if asked.
+> This file **may** be used to support descriptive data-quality analysis and shift-handover prioritisation,
+> but **may not** be used to make automatic shutdown, automatic maintenance, or safety decisions,
+> on condition that the known data-quality issues are clearly documented and invalid records are not used without review,
+> and the decision is revisited when verified failure outcomes, approved engineering limits, or a more representative dataset become available.
 
-> This file **may** be used to ________________________________,
-> but **may not** be used to ________________________________,
-> on condition that ________________________________,
-> and the decision is revisited when ________________________________.
-
-Decision: **Approve / Approve with conditions / Reject pending replacement / Stop**
+Decision: **Approve with conditions**
 
 ## Why this decision and not the one next to it
 
-Two or three sentences. A file that fails checks can still be approved for a
-narrow use, and a file that passes every check can still be unfit. Say which
-situation yours is and what tipped it.
+The file does not pass all validation checks, but the identified problems can be documented and the permitted use is limited to descriptive analysis and shift-handover prioritisation. It is therefore not appropriate to reject the file completely, but it is also not safe to approve it for automatic operational, maintenance, or safety decisions.
 
 ## Conditions
 
-| Condition | Owner | Evidence that closes it | Review trigger |
-|---|---|---|---|
-|  |  |  |  |
-
-## Known issues I am accepting
-
-List what stays broken after approval, and why the permitted use survives it.
-
-| Issue | Why the permitted use survives it |
-|---|---|
-|  |  |
-
-## Record
-
-- Decided by:
-- Date:
-- Dataset fingerprint:
-- Commit:
+| Condition                                                                           | Owner                     | Evidence that closes it                  | Review trigger                      |
+| ----------------------------------------------------------------------------------- | ------------------------- | ---------------------------------------- | ----------------------------------- |
+| Known data-quality issues must be documented before use                             | Data owner                | Updated data-quality record              | New data release                    |
+| Invalid or questionable records must be reviewed before calculations                | Data analyst / data owner | Reviewed records and documented decision | Before operational use              |
+| Approved engineering limits are required for safety-related interpretation          | Engineering               | Approved engineering limits              | Engineering limits become available |
+| Verified failure or inspection outcomes are required for predictive operational use | Data owner / operations   | Historical failure or inspection rec     |                                     |
